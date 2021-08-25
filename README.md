@@ -25,3 +25,23 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+## Vue 2 directives
+The first six are
+- v-text
+- v-html
+- v-show
+- v-if
+- v-else
+- v-else-if
+
+The next four are
+- v-for
+- v-on
+- v-bind
+- v-model
+
+The last three are
+- v-pre
+- v-cloak
+- v-once

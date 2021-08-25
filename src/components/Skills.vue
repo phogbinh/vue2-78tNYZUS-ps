@@ -4,7 +4,7 @@
       <ul>
         <li v-for='(data, index) in skills' :key='index'>{{ index }}: {{ data['skill'] }}</li>
       </ul>
-      <div v-bind:class='{ "alert": showAlert, "another-class": showClass }'></div>
+      <div v-bind:class='alertObject'></div>
     </div>
   </div>
 </template>
@@ -18,8 +18,9 @@ export default {
         { 'skill': 'vuejs' },
         { 'skill': 'frontend developer' }
       ],
-      'showAlert': true,
-      'showClass': true
+      'alertObject': {
+        'alert': true
+      }
     }
   }
 }

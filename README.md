@@ -2,9 +2,11 @@
 The latter part (after the first hyphen) of the repository name is the youtube id of the tutorial video (by Gary Simon).
 
 ## Project setup
+We should not use `npm install` but
 ```
-npm install
+npm ci
 ```
+as specified [here](https://stackoverflow.com/a/56254478).
 
 ### Compiles and hot-reloads for development
 ```

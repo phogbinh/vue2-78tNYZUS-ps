@@ -1,4 +1,5 @@
-# vue-tut
+# Vue 2 tutorial
+The latter part (after the first hyphen) of the repository name is the youtube id of the tutorial video (by Gary Simon).
 
 ## Project setup
 ```

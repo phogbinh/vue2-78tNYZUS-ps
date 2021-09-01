@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: 'Skills',
+  'name': 'Skills',
   data() {
     return {
       'skill': '',
@@ -24,7 +24,7 @@ export default {
       ]
     }
   },
-  methods: {
+  'methods': {
     addSkill() {
       this['skills'].push({ 'skill': this['skill'] })
       this['skill'] = ''; // clear out user input on enter

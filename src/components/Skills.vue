@@ -2,7 +2,10 @@
   <div class="hello">
     <div class='holder'>
       <form @submit.prevent='addSkill'>
-        <input type='text' placeholder='Enter a skill you have..' v-model='skill'>
+        <ValidationProvider name='skill' rules='min:5' v-slot='{ errors }'>
+          <input type='text' placeholder='Enter a skill you have..' v-model='skill'>
+          <p class='alert' v-if='errors.length > 0'>{{ errors[0] }}</p>
+        </ValidationProvider>
       </form>
       <ul>
         <li v-for='(data, index) in skills' :key='index'>{{ data['skill'] }}</li>
@@ -13,7 +16,10 @@
 </template>
 
 <script>
+import { ValidationProvider } from 'vee-validate'
+
 export default {
+  'components': { ValidationProvider },
   'name': 'Skills',
   data() {
     return {
@@ -66,5 +72,12 @@ input {
   font-size: 1.3em;
   background-color: #323333;
   color: #687f7f;
+}
+.alert {
+  background: #fdf2ce;
+  font-weight: bold;
+  display: inline-block;
+  padding: 5px;
+  margin-top: -20px;
 }
 </style>

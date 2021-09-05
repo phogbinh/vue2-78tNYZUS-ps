@@ -21,7 +21,7 @@ import { ValidationProvider } from 'vee-validate'
 export default {
   'components': { ValidationProvider },
   'name': 'Skills',
-  data() {
+  'data': () => {
     return {
       'skill': '',
       'skills': [

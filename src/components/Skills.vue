@@ -5,7 +5,9 @@
         <form @submit.prevent='addSkill'>
           <ValidationProvider name='skill' rules='min:5' v-slot='{ errors }'>
             <input type='text' placeholder='Enter a skill you have..' v-model='skill'>
-            <p class='alert' v-if='errors.length > 0'>{{ errors[0] }}</p>
+            <transition name='alert-in'>
+              <p class='alert' v-if='errors.length > 0'>{{ errors[0] }}</p>
+            </transition>
           </ValidationProvider>
         </form>
       </ValidationObserver>
@@ -89,5 +91,22 @@ input {
   display: inline-block;
   padding: 5px;
   margin-top: -20px;
+}
+.alert-in-enter-active {
+  animation: bounce-in .5s;
+}
+.alert-in-leave-active {
+  animation: bounce-in .5s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 </style>

@@ -5,7 +5,7 @@
         <form @submit.prevent='addSkill'>
           <ValidationProvider name='skill' rules='min:5' v-slot='{ errors }'>
             <input type='text' placeholder='Enter a skill you have..' v-model='skill'>
-            <transition name='alert-in'>
+            <transition enter-active-class='animated flipInX' leave-active-class='animated flipOutX'>
               <p class='alert' v-if='errors.length > 0'>{{ errors[0] }}</p>
             </transition>
           </ValidationProvider>
@@ -53,6 +53,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+@import 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css';
 .holder {
   background: #fff;
 }
@@ -91,22 +92,5 @@ input {
   display: inline-block;
   padding: 5px;
   margin-top: -20px;
-}
-.alert-in-enter-active {
-  animation: bounce-in .5s;
-}
-.alert-in-leave-active {
-  animation: bounce-in .5s reverse;
-}
-@keyframes bounce-in {
-  0% {
-    transform: scale(0);
-  }
-  50% {
-    transform: scale(1.5);
-  }
-  100% {
-    transform: scale(1);
-  }
 }
 </style>

@@ -1,12 +1,14 @@
 <template>
   <div class="hello">
     <div class='holder'>
-      <form @submit.prevent='addSkill'>
-        <ValidationProvider name='skill' rules='min:5' v-slot='{ errors }'>
-          <input type='text' placeholder='Enter a skill you have..' v-model='skill'>
-          <p class='alert' v-if='errors.length > 0'>{{ errors[0] }}</p>
-        </ValidationProvider>
-      </form>
+      <ValidationObserver ref='form'>
+        <form @submit.prevent='addSkill'>
+          <ValidationProvider name='skill' rules='min:5' v-slot='{ errors }'>
+            <input type='text' placeholder='Enter a skill you have..' v-model='skill'>
+            <p class='alert' v-if='errors.length > 0'>{{ errors[0] }}</p>
+          </ValidationProvider>
+        </form>
+      </ValidationObserver>
       <ul>
         <li v-for='(data, index) in skills' :key='index'>{{ data['skill'] }}</li>
       </ul>
@@ -16,10 +18,10 @@
 </template>
 
 <script>
-import { ValidationProvider } from 'vee-validate'
+import { ValidationObserver, ValidationProvider } from 'vee-validate'
 
 export default {
-  'components': { ValidationProvider },
+  'components': { ValidationObserver, ValidationProvider },
   'name': 'Skills',
   'data': () => {
     return {
@@ -32,8 +34,16 @@ export default {
   },
   'methods': {
     addSkill() {
-      this['skills'].push({ 'skill': this['skill'] })
-      this['skill'] = ''; // clear out user input on enter
+      this['$refs']['form'].validate().then(success => {
+        if (!success) {
+            return
+        }
+        this['skills'].push({ 'skill': this['skill'] })
+        this['skill'] = ''; // clear out user input on enter
+        this.$nextTick(() => {
+          this['$refs']['form'].reset()
+        }) // wait until the models are updated in the ui
+      })
     }
   }
 }

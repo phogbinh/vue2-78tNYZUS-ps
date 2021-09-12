@@ -13,7 +13,10 @@
       </ValidationObserver>
       <ul>
         <transition-group enter-active-class='animated bounceInUp' leave-active-class='animated bounceOutDown'>
-          <li v-for='(data, index) in skills' :key='index'>{{ data['skill'] }}</li>
+          <li v-for='(data, index) in skills' :key='index'>
+            {{ data['skill'] }}
+            <font-awesome-icon icon='minus-circle' v-on:click='remove(index)'/>
+          </li>
         </transition-group>
       </ul>
       <p>These are the skills that you possess.</p>
@@ -48,6 +51,9 @@ export default {
           this['$refs']['form'].reset()
         }) // wait until the models are updated in the ui
       })
+    },
+    remove(index) {
+      this['skills'].splice(index, 1)
     }
   }
 }

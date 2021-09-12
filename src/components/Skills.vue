@@ -15,7 +15,7 @@
         <transition-group enter-active-class='animated bounceInUp' leave-active-class='animated bounceOutDown'>
           <li v-for='(data, index) in skills' :key='index'>
             {{ data['skill'] }}
-            <font-awesome-icon icon='minus-circle' v-on:click='remove(index)'/>
+            <font-awesome-icon class='delete-icon' icon='minus-circle' v-on:click='remove(index)'/>
           </li>
         </transition-group>
       </ul>
@@ -100,5 +100,9 @@ input {
   display: inline-block;
   padding: 5px;
   margin-top: -20px;
+}
+.delete-icon {
+  float: right;
+  cursor: pointer;
 }
 </style>
